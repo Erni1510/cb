@@ -1,0 +1,39 @@
+version: '3.5'
+services:
+
+  php-apache-environtment:
+    image: erni15/kuis2
+    container_name: php-apache
+    depends_on:
+    - db
+    volumes:
+      - ./php/src:/var/www/html
+    ports:
+      - 8000:80
+    networks:
+      - backend
+
+  db:
+    image: mysql
+    container_name: db
+    restart: always
+    environtment:
+    MYSQL_ROOT_PASSWORD: 
+    MYSQL_DATABASE: hms
+    ports:
+      - "3306:3306"
+    volumes:
+      - /opt/data:/var/lib/mysql
+      - .docker/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    networks:
+      - backend
+volumes:
+  db:
+
+networks:
+  backend:
+    name: backend-network
+    ipam:
+    driver: default
+    config:
+    - subnet: localhost
