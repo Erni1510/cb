@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   php-apache-environment:
-    image: erni15/kuis5
+    image: erni15/kuis2
     container_name: php-apache
     depends_on:
       - db
