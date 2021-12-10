@@ -13,17 +13,17 @@ services:
       - backend
 
   db:
-    container_name: db2
+    container_name: db3
     image: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: hms
     ports:
-      - "3306:3306"
+      - "3300:3300"
     volumes:
       - db:/var/lib/mysql
-      - ./dbmobil.sql:/docker-entrypoint-initdb.d/dbmobil.sql
+      - ./hms.sql:/docker-entrypoint-initdb.d/hms.sql
     networks:
       - backend
 
