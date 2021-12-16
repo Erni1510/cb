@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   php-apache-environment:
-    image: erni15/kuis2
-    container_name: php-apache
+    image: erni15/kuis3
+    container_name: php-apache3
     depends_on:
       - db
     volumes:
@@ -20,10 +20,10 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: hms
     ports:
-      - "3300:3300"
+      - "3300:3306"
     volumes:
       - db:/var/lib/mysql
-      - ./hms.sql:/docker-entrypoint-initdb.d/hms.sql
+      - ./SQLFile/hms.sql:/docker-entrypoint-initdb.d/hms.sql
     networks:
       - backend
 
